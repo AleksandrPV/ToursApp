@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 
@@ -8,7 +8,14 @@ import { AuthorizationComponent } from './authorization/authorization.component'
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy, OnInit {
 
+  ngOnInit(): void {
+    console.log("OnInit -> AuthComponent")
+  }
+
+  ngOnDestroy(): void {
+    console.log("OnDestroy -> AuthComponent")
+  }
   
 }
