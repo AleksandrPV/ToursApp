@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-import { UserService } from '../../../servises/user.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-registration',
