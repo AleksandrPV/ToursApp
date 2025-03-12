@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "startServer": "node scripts/server.js",
+    "ServerWithNg": "npx concurrently npm:start npm:startServer" 
   },
   "private": true,
   "dependencies": {
