@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
+import { UserService } from '../../../servises/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
 
-  login: string;
+  login: string = null;
   password: string;
   repeatPassword: string;
   cardNumber: string;
@@ -27,7 +28,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   isRemember: boolean;
   labelText: string = 'Сохранить пользователя в хранилище';
 
-  constructor() {
+  constructor(private userService: UserService) {
 
   }
 
@@ -37,6 +38,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("OnDestroy -> RegistrationComponent")
+  }
+
+  onAuth(ev: Event): void {
+    console.log(ev);
+    this.userService.addUser({login: this.login, password: this.password})
   }
 
 }
