@@ -8,4 +8,12 @@ import { Component} from '@angular/core';
 })
 export class AuthorizationComponent {
 
+  ngOnInit(): void {
+    console.log("OnInit -> AuthorizationComponent")
+  }
+
+  ngOnDestroy(): void {
+    console.log("OnDestroy -> AuthorizationComponent")
+  }
+
 }
