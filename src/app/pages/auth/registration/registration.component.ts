@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserService } from '../../../services/user.service';
 import { IUserRegister } from '../../../models/IUser';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-registration',
@@ -29,7 +30,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   isRemember: boolean;
   labelText: string = 'Сохранить пользователя в хранилище';
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService
+  ) {
 
   }
 
@@ -45,7 +49,18 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     console.log(ev);
     // this.userService.addUser({login: this.login, password: this.password})
     const postObj = {login: this.login, password: this.password, email: this.email} as IUserRegister
-    this.userService.registerUser(postObj)
+    this.userService.registerUser(postObj).subscribe(
+      () => {
+        this.initToast('success', 'Регистрация прошла успешна!')},
+      () => {
+        this.initToast('error', 'Произошла ошибка!' )}
+    )
   }
+
+  initToast(type: 'error' | 'success', text: string): void {
+    this.messageService.add({severity: type, detail: text, life: 3000 })
+  }
+
+
 
 }
