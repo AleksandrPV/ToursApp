@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserService } from '../../../services/user.service';
+import { IUserRegister } from '../../../models/IUser';
 
 @Component({
   selector: 'app-registration',
@@ -42,7 +43,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   onAuth(ev: Event): void {
     console.log(ev);
-    this.userService.addUser({login: this.login, password: this.password})
+    // this.userService.addUser({login: this.login, password: this.password})
+    const postObj = {login: this.login, password: this.password, email: this.email} as IUserRegister
+    this.userService.registerUser(postObj)
   }
 
 }

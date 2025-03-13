@@ -22,7 +22,7 @@
         <p-button
         label="Войти"
         [disabled]="!login || !password || login.length < 3 || login.length < 3"
-        click="onAuth()"
+        (click)="onAuth($event)"
         ></p-button>
     </div>
 
