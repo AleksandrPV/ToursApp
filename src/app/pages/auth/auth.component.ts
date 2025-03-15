@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { TabsModule } from 'primeng/tabs';
@@ -10,7 +10,8 @@ import { MessageService } from 'primeng/api';
   imports: [RegistrationComponent, AuthorizationComponent, TabsModule, Toast],
   providers: [MessageService],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrl: './auth.component.scss',
+  // encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent implements OnDestroy, OnInit {
 
