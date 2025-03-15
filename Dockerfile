@@ -1,29 +1,29 @@
-# Use the official Node.js image as the base image
-FROM node:14
+# FROM node:20.12-bookworm-slim AS development
+FROM node:22.14-bookworm-slim 
+#AS development
 
-# Set the working directory
+USER node
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+EXPOSE 4200
 
-# Install dependencies
-RUN npm install
+COPY --chown=node:node ./package*.json ./
 
-# Copy the rest of the application code
-COPY . .
+RUN npm ci
 
-# Build the Angular application
-RUN npm run build
+COPY --chown=node ./ ./
 
-# Use a lightweight web server to serve the application
-FROM nginx:alpine
+# CMD ["npm", "run", "ServerWithNg"]
+CMD ["npm", "start"]
 
-# Copy the built Angular application from the previous stage
-COPY --from=0 /app/dist/ToursApp /usr/share/nginx/html
+# FROM development AS build
 
-# Expose port 80
-EXPOSE 80
+# RUN npm run build
 
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+
+# FROM nginx:1.25.4-alpine3.18
+
+# COPY ./virtual_host.conf /etc/nginx/conf.d/default.conf
+
+# COPY --from=build /app/build /var/www
