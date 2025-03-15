@@ -5,6 +5,8 @@ input.input-error {
 
 
 
+
+
 app-auth {
     .c-min-w-300 {
     min-width: 300px; /* Минимальная ширина */
@@ -24,6 +26,12 @@ app-auth {
     p-tab {
         justify-content: center;
         width: 50%;
+    }
+    p-button {
+        margin-top: 1rem;
+    }
+    p-button button span {
+        width: 140px;
     }
 
     span {
