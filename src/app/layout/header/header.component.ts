@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+
+import { DatePipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [ DatePipe ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+  dateTime: Date;
+
+  constructor() {}
+
+  ngOnInit() {
+    setInterval(() => {
+      this.dateTime = new Date();
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    
+  }
 
 }

@@ -1,11 +1,21 @@
 <div class="container">
-    <h1 class="header-title">Welcome to ToursApp</h1>
-    <nav class="header-nav">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Tours</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="layout-header">
+        <div class="layout-header__menu">
+
+        </div>
+    
+        <!-- right block with user actions and data -->
+        <div class="layout-header__right-block">
+            <div class="user-info"></div>
+            <div class="logout"></div>
+            <div class="data">
+                <div>
+                    {{ dateTime | date: 'HH:mm:ss' }}
+                </div>
+                <div class="p-0 m-0">
+                    {{ dateTime | date: 'EEEE' }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

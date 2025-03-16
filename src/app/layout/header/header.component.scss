@@ -1,41 +1,33 @@
+@use 'variables' as var;
+
 :host {
     height: 60px;
     width: 100%;
     display: block;
-    
+    background-color: var.$header-background;
 } 
 
 .container {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.header-title {
-    margin: 0;
-    font-size: 24px;
-}
-
-.header-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.layout-header {
     display: flex;
-}
+    justify-content: space-between;
+    gap: 8px;
+    height: 60px;
+    padding: 4px 5px;
+    color: var.$header-color;
+    
+    &__right-block {
+        display: flex;
 
-.header-nav li {
-    margin-left: 20px;
-}
-
-.header-nav a {
-    color: yellowgreen;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.header-nav a:hover {
-    text-decoration: underline;
+        & .user-info {
+            width: 100px;
+        }
+    }
 }
