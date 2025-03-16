@@ -1,4 +1,4 @@
-
+Учебный проект в политехе
 
 Docker
 docker build -t example-angular -f Dockerfile .
