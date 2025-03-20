@@ -1,0 +1,84 @@
+{
+    "tours": [
+        {
+            "id": "1",
+            "name": "Mexico",
+            "description": "From the south to the center of the country",
+            "tourOperator": "LocalAdventures",
+            "price": "€2,192",
+            "img": "1.jpeg",
+            "type": "multi",
+            "alt": "Mexico"
+        },
+        {
+            "id": "2",
+            "name": "Pharaohs Nile Cruise Adventure",
+            "description": "Start and end in Cairo! With the In-depth Cultural tour Pharaohs Nile Cruise Adventure - 5 Star, you have a 8 days tour package taking you through Cairo, Egypt and 8 other destinations in Egypt. Pharaohs Nile Cruise Adventure - 5 Star includes accommodation in a hotel as well as an expert guide, meals, transport and more.",
+            "tourOperator": "LocalAdventures",
+            "price": "€1,100",
+            "img": "3.jpeg",
+            "date": "2022-10-22",
+            "alt": "Mexico"
+        },
+        {
+            "id": "3",
+            "name": "Kilimanjaro climbing machame route 7 days",
+            "description": "Start in Machame Camp and end in Mweka Gate! With the Hiking & Trekking tour Kilimanjaro climbing machame route 7 days, you have a 7 days tour package taking you through Machame Camp, Tanzania and 5 other destinations in Tanzania. Kilimanjaro climbing machame route 7 days includes accommodation, an expert guide, meals, transport and more.",
+            "tourOperator": "Bali Bucket List Tours",
+            "price": "€761",
+            "img": "5.webp",
+            "type": "multi",
+            "alt": "Mexico"
+        },
+        {
+            "id": "4",
+            "name": "3 Day Southwest USA National Parks Tour from Las Vegas",
+            "description": "Las Vegas, Zion National Park, Bryce Canyon National Park, Antelope Canyon",
+            "tourOperator": "BH Lanka Tours",
+            "price": "€1200",
+            "img": "6.webp",
+            "alt": "Mexico"
+        },
+        {
+            "id": "5",
+            "name": "Bali Bucket List Original 10 Day Tour",
+            "description": "Canggu, Ubud, Gili Islands, Nusa Lembongan, Nusa Penida, Seminyak",
+            "tourOperator": "LocalAdventures",
+            "price": "€950",
+            "img": "7.webp"
+        },
+        {
+            "id": "6",
+            "name": "National Parks Tour 3 Days Small Group Tour from Las Vegas",
+            "description": "Las Vegas, Zion National Park, Bryce Canyon National Park, Antelope Canyon",
+            "tourOperator": "Emerald Waterways",
+            "price": "€1200",
+            "img": "8.webp",
+            "type": "single"
+        },
+        {
+            "id": "7",
+            "name": "Grand Tour Of Sri Lanka",
+            "description": "Negombo, Anuradhapura, Dambulla, Sigiriya, Polonnaruwa, Mahiyanganaya, Kandy",
+            "tourOperator": "LocalAdventures",
+            "price": "€680",
+            "img": "7.webp"
+        },
+        {
+            "id": "8",
+            "name": "Southern Treasures - 8 Days",
+            "description": "Cusco, Sacred Valley, Ollantaytambo, Aguas Calientes, Machu Picchu, Pisac, Puno",
+            "tourOperator": "Emerald Waterways",
+            "price": "€1,279",
+            "img": "8.webp"
+        },
+        {
+            "id": "9",
+            "name": "Japan One Life Adventures - 10 Days",
+            "description": "Tokyo, Hakone, Takayama, Kyoto, Osaka",
+            "tourOperator": "LocalAdventures",
+            "price": "€1,192",
+            "img": "9.webp"
+        }
+    ]
+}
