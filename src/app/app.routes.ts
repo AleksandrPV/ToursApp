@@ -7,8 +7,10 @@ export const routes: Routes = [
 
 { path: "auth", component: AuthComponent},
 { path: "", redirectTo: '/auth', pathMatch: 'full'},
-{ path: "tickets", component: LayoutComponent, children: [
+{ path: "tours", component: LayoutComponent, children: [
     { path: "", component: ToursComponent},
+    // { path: "tours/", redirectTo: '', pathMatch: 'full'},
+    // { path: "tours/:id", component: TourItemComponent},
 ]},
 { path: "**", redirectTo: '/auth', pathMatch: 'full'}
 
