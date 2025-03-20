@@ -4,5 +4,6 @@ const serverApi = environment.apiUrl;
 export const API = {
     auth: `${serverApi}/auth`,
     registration: `${serverApi}/register`,
-    tours: `${serverApi}/tours`
+    tours: `${serverApi}/tours`,
+    tour: `${serverApi}/tour`
 }
