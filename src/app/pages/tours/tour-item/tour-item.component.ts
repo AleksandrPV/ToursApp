@@ -10,15 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TourItemComponent implements OnInit {
     tourId: string = null;
-    
+    tourData: any = null;
+
     constructor(private tourService: ToursService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
       this.tourId = this.route.snapshot.paramMap.get('id');
-      console.log('tourId = ', this.tourId);
-      
       this.route.paramMap.subscribe((par) => {
         console.log('***', par)
       })
+
+      this.tourService.getTourById(this.tourId).subscribe((data) => {
+        if (data) {
+          console.log('data', data)
+          this.tourData = data;
+        }
+      })
+
     }
 }

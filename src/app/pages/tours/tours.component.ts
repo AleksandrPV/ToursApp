@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { TourItemComponent } from './tour-item/tour-item.component';
 
 @Component({
   selector: 'app-tours',
