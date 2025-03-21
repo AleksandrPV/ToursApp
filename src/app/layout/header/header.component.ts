@@ -17,15 +17,33 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   dateTime: Date;
-  menuItems: MenuItem[] = [];
   user: IUser;
   logoutIcon = 'pi pi-user';
   isMenuOpen = false;
+
+  menuItems: MenuItem[] = [
+    {
+      label: 'Главная',
+      routerLink: ['/'],
+    },
+    {
+      label: 'Туры',
+      routerLink: ['/tours'],
+    },
+    {
+      label: 'Настройки',
+      routerLink: ['/settings'],
+    },
+    {
+      label: 'Заказы',
+      routerLink: ['/orders'],
+    }
+  ];
+
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    this.menuItems = this.initMenuItems();
 
     setInterval(() => {
       this.dateTime = new Date();
@@ -33,27 +51,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {}
-    items: MenuItem[] | undefined;
-    initMenuItems() {
-      return [
-        {
-          label: 'Главная',
-          RouterLink: ['/home'],
-        },
-        {
-          label: 'Туры',
-          RouterLink: ['/tours'],
-        },
-        {
-          label: 'Настройки',
-          RouterLink: ['/settings'],
-        },
-        {
-          label: 'Заказы',
-          RouterLink: ['/orders'],
-        }
-      ];
-    }
+
+
+
+  
 
   logout(): void {
     this.userService.setUser(null);
@@ -65,6 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleMenu() {
+    console.log("hello")
     this.isMenuOpen = !this.isMenuOpen;
   }
 }

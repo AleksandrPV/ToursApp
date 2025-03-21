@@ -100,7 +100,7 @@
             "description": "From the south to the center of the country",
             "tourOperator": "LocalAdventures",
             "price": "€2,192",
-            "img": "ocean.jpg"
+            "img": "ocean.jpeg"
         },
         {
             "id": "11",
@@ -261,7 +261,7 @@
             "description": "Cusco, Sacred Valley, Ollantaytambo, Aguas Calientes, Machu Picchu, Pisac, Puno",
             "tourOperator": "Emerald Waterways",
             "price": "€1,279",
-            "img": "pic9.jpg"
+            "img": "pic3.jpeg"
         },
         {
             "id": "31",
