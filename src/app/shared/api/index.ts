@@ -5,5 +5,6 @@ export const API = {
     auth: `${serverApi}/auth`,
     registration: `${serverApi}/register`,
     tours: `${serverApi}/tours`,
-    tour: `${serverApi}/tour`
+    tour: `${serverApi}/tour`,
+    config: `/config/config.json`,
 }
