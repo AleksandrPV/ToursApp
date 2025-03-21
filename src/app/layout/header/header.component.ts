@@ -38,11 +38,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       return [
         {
           label: 'Главная',
-          RouterLink: ['tours'],
+          RouterLink: ['/tours'],
         },
         {
           label: 'Настройки',
-          RouterLink: ['settings'],
+          RouterLink: ['/settings'],
         },
         {
           label: 'Заказы',
@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       ];
     }
+
   logout(): void {
     this.userService.setUser(null);
     this.router.navigate(['/auth']);
