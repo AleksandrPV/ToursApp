@@ -3,6 +3,7 @@ import { CardModule } from 'primeng/card';
 import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TourItemComponent } from './tour-item/tour-item.component';
+import { ITour } from '../../models/ITour';
 
 @Component({
   selector: 'app-tours',
@@ -12,7 +13,7 @@ import { TourItemComponent } from './tour-item/tour-item.component';
 })
 export class ToursComponent {
   
-  tours: any = [];
+  tours: ITour[] = [];
 
   constructor (
     private toursService: ToursService,
