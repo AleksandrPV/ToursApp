@@ -11,11 +11,11 @@ export const routes: Routes = [
 
 { path: "", component: LayoutComponent, children: [
     { path: "", component: HomeComponent},
-    { path: "tours", component: ToursComponent, children: [
-        { path: "", component: ToursComponent},
-        { path: "tour/:id", component: TourItemComponent},
-        { path: "tour/", redirectTo: '/tours', pathMatch: 'full'},
-    ]},
+]},
+{ path: "tours", component: LayoutComponent, children: [
+    { path: "", component: ToursComponent},
+    { path: "tour/:id", component: TourItemComponent},
+    { path: "tour", redirectTo: '', pathMatch: 'full'},
 ]},
 { path: "auth", component: AuthComponent},
 { path: "**", component: NotFound404Component},
