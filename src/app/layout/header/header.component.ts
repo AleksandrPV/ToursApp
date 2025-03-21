@@ -4,13 +4,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IUser } from '../../models/IUser';
 import { MenuItem } from 'primeng/api';
 import { UserService } from '../../services/user.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { Menubar, MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-header',
-  imports: [ DatePipe, MenubarModule,ButtonModule],
+  imports: [ DatePipe, MenubarModule, ButtonModule, RouterModule, MenubarModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuItems: MenuItem[] = [];
   user: IUser;
   logoutIcon = 'pi pi-user';
-  
+  isMenuOpen = false;
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       return [
         {
           label: 'Главная',
+          RouterLink: ['/home'],
+        },
+        {
+          label: 'Туры',
           RouterLink: ['/tours'],
         },
         {
@@ -60,4 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.logoutIcon = val ? 'pi pi-sign-out' : 'pi pi-user';
   }
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

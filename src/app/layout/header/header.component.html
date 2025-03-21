@@ -1,9 +1,15 @@
 <div class="container">
     <div class="layout-header">
         <div class="layout-header__menu">
-            <p-menubar 
-                [model]="menuItems"
-            />
+            <div class="grid grid-nogutter">
+                <div class="col justify-content-center align-content-center">
+                    <p-menubar [model]="menuItems" [autoDisplay]="false" class="flex justify-content-center">
+                        <ng-template pTemplate="start">
+                            <button pButton type="button" icon="pi pi-bars" class="p-button-text mobile-menu-button" (click)="toggleMenu()"></button>
+                        </ng-template>
+                    </p-menubar>    
+                </div>
+            </div>
         </div>
     
         <!-- right block with user actions and data -->
