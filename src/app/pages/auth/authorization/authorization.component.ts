@@ -38,8 +38,6 @@ export class AuthorizationComponent implements OnDestroy, OnInit {
   }
 
   onAuth(ev: Event): void {
-    console.log(ev);
-    
     const user: IUser = {
       login: this.login, 
       password: this.password
@@ -47,7 +45,8 @@ export class AuthorizationComponent implements OnDestroy, OnInit {
 
     this.userService.authUser(user).subscribe(
       () => {
-        this.router.navigate(['tickets']);
+        this.userService.setUser(user);
+        this.router.navigate(['tours']);
       },
       () => {
         this.initToast('error', 'Произошла ошибка!' )}

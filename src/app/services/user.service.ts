@@ -9,34 +9,49 @@ import { Observable } from 'rxjs';
 })
 
 export class UserService {
-  private userStorage: IUser[] = [];
+
   private currentUser: IUser | null = null;
   
   constructor(private http: HttpClient) { }
 
-  private getUser(login: string): IUser | null {
-    return this.userStorage.find(user => login === user.login) || null
-  }
-
-  
-
-  addUser(user: IUser, isRemember?: boolean): true | string {
-    if (this.getUser(user.login)) {
-      return "Пользователь с данным именем уже существует!"
-    }
-    this.userStorage.push(user);
-    return true;
-  }
-
-  checkUser(login: string): boolean {
-    return !!this.getUser(login);
-
-  }
-
   registerUser(user: IUserRegister): Observable<string> {
     return this.http.post(API.registration, user, {responseType: 'text'});
   }
+
   authUser(user: IUser): Observable<string> {
-    return this.http.post(API.auth, user, {responseType: 'text'});
+    return this.http.post<string>(API.auth, user);
   }
+
+  getUser(): IUser {
+    return this.currentUser
+  }
+
+  setUser(user: IUser): void {
+    this.currentUser = user;
+  }
+  // private getUser(login: string): IUser | null {
+  //   return this.userStorage.find(user => login === user.login) || null
+  // }
+
+  
+
+  // addUser(user: IUser, isRemember?: boolean): true | string {
+  //   if (this.getUser(user.login)) {
+  //     return "Пользователь с данным именем уже существует!"
+  //   }
+  //   this.userStorage.push(user);
+  //   return true;
+  // }
+
+  // checkUser(login: string): boolean {
+  //   return !!this.getUser(login);
+
+  // }
+
+  // registerUser(user: IUserRegister): Observable<string> {
+  //   return this.http.post(API.registration, user, {responseType: 'text'});
+  // }
+  // authUser(user: IUser): Observable<string> {
+  //   return this.http.post(API.auth, user, {responseType: 'text'});
+  // }
 }
