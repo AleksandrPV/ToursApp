@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   dateTime: Date;
   user: IUser;
   logoutIcon = 'pi pi-user';
+  loginIcon = 'pi pi-sign-in';
   isMenuOpen = false;
 
   menuItems: MenuItem[] = [
@@ -52,18 +53,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-
-
-  
-
   logout(): void {
     this.userService.setUser(null);
     this.router.navigate(['/auth']);
   }
 
-  hoverLogoutBtn(val: boolean): void {  
-    this.logoutIcon = val ? 'pi pi-sign-out' : 'pi pi-user';
+  hoverLogoutBtn(val: boolean): void { 
+    if (this.user?.login) {
+
+    this.logoutIcon = val ? 'pi pi-sign-in' : 'pi pi-user'
+    } else {
+      
+      this.logoutIcon = val ? 'pi pi-sign-out' : 'pi pi-user';
+    }
   }
+
 
   toggleMenu() {
     console.log("hello")
