@@ -1,3 +1,46 @@
-<div>
-    footer!
-</div>  
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>О нас</h3>
+      <p>Мы предлагаем незабываемые путешествия по всему миру. Наша миссия - сделать путешествия доступными и комфортными для каждого.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="pi pi-facebook"></i></a>
+        <a href="#" class="social-link"><i class="pi pi-instagram"></i></a>
+        <a href="#" class="social-link"><i class="pi pi-twitter"></i></a>
+        <a href="#" class="social-link"><i class="pi pi-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Быстрые ссылки</h3>
+      <ul class="footer-links">
+        <li><a routerLink="/tours">Туры</a></li>
+        <li><a routerLink="/about">О нас</a></li>
+        <li><a routerLink="/contacts">Контакты</a></li>
+        <li><a routerLink="/blog">Блог</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Контакты</h3>
+      <ul class="contact-info">
+        <li><i class="pi pi-map-marker"></i> Москва, ул. Примерная, 123</li>
+        <li><i class="pi pi-phone"></i> +7 (999) 123-45-67</li>
+        <li><i class="pi pi-envelope"></i> info&#64;toursapp.ru</li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Подписка на новости</h3>
+      <p>Получайте первыми информацию о новых турах и акциях</p>
+      <div class="subscribe-form">
+        <input type="email" placeholder="Ваш email" class="subscribe-input">
+        <p-button label="Подписаться" severity="success" size="small"></p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{currentYear}} ToursApp. Все права защищены.</p>
+  </div>
+</footer>  
