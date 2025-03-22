@@ -19,7 +19,7 @@ app.use(express.json());
  
 // route logic
 app.get('/', (req, res) => {
-  res.send('Hello World!') 
+  res.send('Сервер работает!') 
 }) 
  
 //************************ */ register****************************
