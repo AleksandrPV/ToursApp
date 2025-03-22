@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API } from '../shared/api';
 import { ITour } from '../models/ITour';
+import { IApi } from '../models/IApi';
 
 @Injectable({
   providedIn: 'root'

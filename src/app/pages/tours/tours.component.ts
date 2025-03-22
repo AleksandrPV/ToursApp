@@ -29,7 +29,7 @@ export class ToursComponent {
     })
   }
 
-  goToTour(item: any): void {
+  goToTour(item: ITour): void {
     this.router.navigate(['tour', item.id], {relativeTo: this.route})
   }
 }
