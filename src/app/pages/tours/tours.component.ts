@@ -4,10 +4,10 @@ import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TourItemComponent } from '../tour-item/tour-item.component';
 import { ITour } from '../../models/ITour';
-
+import { SlicePipe } from '@angular/common';
 @Component({
   selector: 'app-tours',
-  imports: [CardModule],
+  imports: [CardModule, SlicePipe],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss'
 })

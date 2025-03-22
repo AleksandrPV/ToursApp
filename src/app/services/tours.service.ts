@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API } from '../shared/api';
+import { ITour } from '../models/ITour';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,6 @@ export class ToursService {
 
   getTourById(id: string): Observable<any> {
     const path = API.tour+'/'+id;
-    return this.http.get(`${API.tour}/${id}`);
+    return this.http.get(path);
   }
 }
