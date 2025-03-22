@@ -15,3 +15,6 @@ export interface ITour {
     img: string,
     type?:string
 }
+export interface ITourServerRes {
+    tours: ITour[]
+}
