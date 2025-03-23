@@ -8,9 +8,11 @@ import { SlicePipe } from '@angular/common';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-tours',
-  imports: [CardModule, SlicePipe, InputGroupAddonModule, InputGroupModule, ButtonModule],
+  imports: [CardModule, SlicePipe, InputGroupAddonModule, InputGroupModule, ButtonModule, SearchPipe, FormsModule],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss'
 })
@@ -18,6 +20,7 @@ export class ToursComponent {
   
   tours: ITour[] = [];
   toursStore: ITour[] = [];
+  // searchValue: string = ''; переменная не нужна, так как используем шаблонную переменную
 
   constructor (
     private toursService: ToursService,
