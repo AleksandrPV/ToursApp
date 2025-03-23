@@ -4,7 +4,7 @@ FROM node:22.14-bookworm-slim
 
 USER node
 
-WORKDIR /app
+WORKDIR /
 
 EXPOSE 4200
 
@@ -14,16 +14,15 @@ RUN npm ci
 
 COPY --chown=node ./ ./
 
-# CMD ["npm", "run", "ServerWithNg"]
-CMD ["npm", "start"]
+CMD ["npm", "run", "ServerWithNg"]
+# CMD ["npm", "start"]
 
-# FROM development AS build
+FROM development AS build
 
-# RUN npm run build
+RUN npm run build
 
+FROM nginx:1.25.4-alpine3.18
 
-# FROM nginx:1.25.4-alpine3.18
+COPY ./virtual_host.conf /etc/nginx/conf.d/default.conf
 
-# COPY ./virtual_host.conf /etc/nginx/conf.d/default.conf
-
-# COPY --from=build /app/build /var/www
+COPY --from=build /dist/tours-app /var/www
