@@ -20,4 +20,19 @@ export class ToursService {
     const path = API.tour+'/'+id;
     return this.http.get<ITour>(path);
   }
+
+  searchTours(tours: ITour[], value: string): ITour[] {
+    if (Array.isArray(tours)) {
+      return tours.filter((tour) => {
+
+        if (tour && typeof tour.name === 'string') {
+          return tour.name.toLowerCase().includes(value.toLowerCase());
+        } else {
+          return false;
+        }
+      });
+    } else {
+      return [];
+    }
+  }
 }
