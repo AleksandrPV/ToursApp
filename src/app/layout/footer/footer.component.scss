@@ -106,6 +106,7 @@
         color: rgba(255, 255, 255, 0.6);
       }
     }
+    
   }
 
   .footer-bottom {
@@ -121,14 +122,14 @@
   }
 }
 
-:host ::ng-deep {
-  .p-button {
-    background: #64b5f6;
-    border: none;
-    transition: background-color 0.3s ease;
+// :host ::ng-deep {
+//   .p-button {
+//     background: #64b5f6;
+//     border: none;
+//     transition: background-color 0.3s ease;
 
-    &:hover {
-      background: #42a5f5;
-    }
-  }
-} 
+//     &:hover {
+//       background: #42a5f5;
+//     }
+//   }
+// } 

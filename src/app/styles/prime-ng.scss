@@ -1,3 +1,5 @@
+@use 'variables' as var;
+
 .p-card {
     & :hover {
         opacity: .9;
@@ -21,4 +23,22 @@
     & .p-card-content {
         -webkit-mask-image: linear-gradient(130deg, #000 30%, transparent)
     }
+}
+
+
+p-button button.p-button {
+    
+    background-color: var.$main-orange;
+    border-color: var.$main-orange;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    &.p-button-sm:hover {
+        background: var.$main-orange;
+        // background-color: var.$main-orange;
+        border-color: var.$main-orange;
+        border: none;
+        transition: background-color 0.3s ease;
+        }
+
 }
