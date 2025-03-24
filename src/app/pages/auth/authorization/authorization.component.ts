@@ -46,6 +46,7 @@ export class AuthorizationComponent implements OnDestroy, OnInit {
     this.userService.authUser(user).subscribe(
       () => {
         this.userService.setUser(user);
+        this.userService.setSessionStorageLogin(user);
         this.router.navigate(['tours']);
       },
       () => {

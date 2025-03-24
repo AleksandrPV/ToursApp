@@ -10,7 +10,10 @@ import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
 
-{ path: "", component: LayoutComponent, children: [
+{ path: "",
+    canActivate: [authGuard],
+    component: LayoutComponent,
+     children: [
     { path: "", component: HomeComponent},
 ]},
 { path: "tours", 

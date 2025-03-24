@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loginIcon = 'pi pi-sign-in';
   isMenuOpen = false;
 
+
+
   menuItems: MenuItem[] = [
     {
       label: 'Главная',
@@ -43,9 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UserService, private router: Router) {}
 
+  
   ngOnInit() {
-    this.user = this.userService.getUser();
-
+    this.user = {"login": sessionStorage.getItem('login')};
+    
     setInterval(() => {
       this.dateTime = new Date();
     }, 1000);
