@@ -1,0 +1,44 @@
+# Этап сборки Angular приложения
+FROM node:20.12-bookworm-slim AS angular-build
+
+WORKDIR /app
+
+# Копируем файлы package.json и package-lock.json
+COPY package*.json ./
+RUN npm install
+
+# Копируем исходный код
+COPY . .
+
+# Собираем Angular приложение
+RUN npm run build
+
+# Этап сборки API сервера
+FROM node:20.12-bookworm-slim AS api-build
+
+WORKDIR /app
+
+# Копируем файлы package.json и package-lock.json
+COPY package*.json ./
+RUN npm install
+
+# Копируем только необходимые файлы для API сервера
+COPY scripts/server.js ./scripts/
+COPY server-data ./server-data/
+
+# Финальный этап
+FROM node:20.12-bookworm-slim
+
+WORKDIR /app
+
+# Копируем собранное Angular приложение
+COPY --from=angular-build /app/dist/tours-app/browser ./public
+COPY --from=api-build /app/scripts ./scripts
+COPY --from=api-build /app/server-data ./server-data
+COPY --from=api-build /app/node_modules ./node_modules
+
+# Открываем порт для API сервера
+EXPOSE 3000
+
+# Запускаем API сервер
+CMD ["node", "scripts/server.js"] 

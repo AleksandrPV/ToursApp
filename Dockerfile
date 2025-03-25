@@ -1,46 +1,56 @@
+# Этап разработки
 FROM node:20.12-bookworm-slim AS development
-
-USER node
 
 WORKDIR /app
 
-VOLUME [ "/data" ]
+# Устанавливаем зависимости
+COPY package*.json ./
+RUN npm install
 
-EXPOSE 4200
+# Копируем исходный код
+COPY . .
 
-COPY --chown=node:node ./package*.json ./
+# Открываем порты для Angular и API сервера
+EXPOSE 4200 3000
 
-RUN npm ci
+# Запускаем приложение в режиме разработки
+CMD ["npm", "run", "ServerWithNg"]
 
-COPY --chown=node:node ./ ./
-
-CMD ["npm", "run", "start", "--", "--host"]
-
-
+# Этап сборки Angular
 FROM development AS build
 
-RUN npm run build -- --configuration=production
+RUN npm run build
 
+# Этап API сервера
+FROM node:20.12-bookworm-slim AS api
 
-FROM node:20.12-bookworm-slim AS production
+WORKDIR /app
 
-WORKDIR /var/www
+# Копируем только необходимые файлы для API сервера
+COPY scripts/server.js ./scripts/
+COPY server-data ./server-data/
+COPY package*.json ./
 
-EXPOSE 4200
+# Устанавливаем только production зависимости
+RUN npm install --production
 
-RUN npm install -g serve
+# Открываем порт для API сервера
+EXPOSE 3000
 
-COPY --from=build /app/dist/tours-app/browser .
+# Запускаем API сервер
+CMD ["node", "scripts/server.js"]
 
-USER node
+# Этап для Angular в production
+FROM nginx:1.25.4-alpine AS angular
 
-CMD ["serve", "-s", "-p", "4200"]
+# Копируем конфигурацию nginx
+COPY virtual_host.conf /etc/nginx/conf.d/default.conf
 
-# FROM nginx:1.25.4-alpine3.18
+# Копируем собранное Angular приложение
+COPY --from=build /app/dist/tours-app/browser /usr/share/nginx/html
 
-# COPY ./virtual_host.conf /etc/nginx/conf.d/default.conf
-
-# COPY --from=build /app/dist/tours-app/browser /var/www
+# Открываем порт 80 для веб-сервера
+EXPOSE 80
 
 
 
