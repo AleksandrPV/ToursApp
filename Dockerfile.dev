@@ -1,0 +1,16 @@
+FROM node:20.12-bookworm-slim
+
+WORKDIR /app
+
+# Устанавливаем зависимости
+COPY package*.json ./
+RUN npm install
+
+# Копируем исходный код
+COPY . .
+
+# Открываем порты для Angular и API сервера
+EXPOSE 4200 3000
+
+# Запускаем скрипт, который запустит и Angular, и API сервер
+CMD ["npm", "run", "ServerWithNg"] 

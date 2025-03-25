@@ -4,6 +4,8 @@ USER node
 
 WORKDIR /app
 
+VOLUME [ "/data" ]
+
 EXPOSE 4200
 
 COPY --chown=node:node ./package*.json ./
