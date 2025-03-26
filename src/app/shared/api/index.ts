@@ -8,4 +8,5 @@ export const API: IApi = {
     tours: `${serverApi}/tours`,
     tour: `${serverApi}/tour`,
     config: `/config/config.json`,
+    nearestTours: `${serverApi}/nearestTours`,
 }

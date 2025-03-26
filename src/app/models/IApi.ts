@@ -4,4 +4,5 @@ export interface IApi {
     tours: string,
     tour: string,
     config: string,
+    nearestTours: string,
 }

@@ -19,7 +19,7 @@ app.use(express.json());
  
 // route logic
 app.get('/', (req, res) => {
-  res.send('Сервер работает!') 
+  res.send('Hello World!') 
 }) 
  
 //************************ */ register****************************
@@ -105,6 +105,38 @@ app.post('/auth', (req, res) => {
         throw new Error('Тур не найден по id:', paramId);
       }
   });
+ 
+    /*******************get tour */
+    app.get('/tour/:id', (req, res) => { 
+      const jsonFileData =  fs.readFileSync(toursJson, 'utf-8', (err, data) => {}, (err) => {
+        console.log('err read file tours', err);});
+                // parse data
+        const  parseJsonData = JSON.parse(jsonFileData);
+        const paramId = req.params.id;
+ 
+ 
+        const item = parseJsonData.tours.find((tour) => tour.id === paramId);
+        if (item) {
+          res.send(item);
+        } else {
+          throw new Error('Тур не найден по id:', paramId);
+        }
+    });
+ 
+ 
+    /*******************get nearest tour */
+    app.get('/nearestTours', (req, res) => { 
+      const jsonFileData =  fs.readFileSync(toursJson, 'utf-8', (err, data) => {}, (err) => {
+        console.log('err read file tours', err);});
+ 
+                // parse data
+        const  parseJsonData = JSON.parse(jsonFileData);
+        const locationId = req.query?.locationId;
+        console.log('req.query', req.query)
+ 
+        const items = parseJsonData.tours.filter((tour) => tour.locationId === locationId);
+        res.send(items);
+    });
  
 // run and listen serve
 app.listen(port, () => {

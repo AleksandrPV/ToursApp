@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "startServer": "node scripts/server.js",
-    "ServerWithNg": "npx concurrently \"npm run start\" \"npm run startServer\""
+    "ServerWithNg": "npx concurrently \"npm run start\" \"npm run startServer\"",
+    "development": "docker-compose up --build"
   },
   "private": true,
   "dependencies": {
