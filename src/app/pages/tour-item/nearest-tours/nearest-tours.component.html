@@ -1,7 +1,7 @@
 <div class="card">
     <p-galleria [value]="toursArr()" [showIndicators]="true" [showThumbnails]="false" [containerStyle]="{ 'max-width': '440px' }">
         <ng-template #item let-item>
-            <img [src]="'/img/tours/'+item.img" style="width: 100%; display: block;" />
+            <img [ngSrc]="'/img/tours/'+item.img" priority fill/>
         </ng-template>
     </p-galleria>
 </div>
