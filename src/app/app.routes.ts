@@ -6,6 +6,7 @@ import { TourItemComponent } from './pages/tour-item/tour-item.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFound404Component } from './pages/not-found-404/not-found-404.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,14 @@ export const routes: Routes = [
     { path: "tour/:id", component: TourItemComponent},
     { path: "tour", redirectTo: '', pathMatch: 'full'},
 ]},
+{ path: "settings",
+    canActivate: [authGuard],
+    component: LayoutComponent,
+     children: [
+    { path: "", component: SettingsComponent},
+]},
 { path: "auth", component: AuthComponent},
+
 { path: "**", component: NotFound404Component},
 
 ];

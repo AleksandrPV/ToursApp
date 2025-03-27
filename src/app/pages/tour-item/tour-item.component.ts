@@ -3,13 +3,12 @@ import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { NgIf } from '@angular/common';
 import { NearestToursComponent } from './nearest-tours/nearest-tours.component';
 
 
 @Component({
   selector: 'app-tour-item',
-  imports: [CardModule, ButtonModule, RouterLink, NgIf, NearestToursComponent],
+  imports: [CardModule, ButtonModule, RouterLink, NearestToursComponent],
   templateUrl: './tour-item.component.html',
   styleUrl: './tour-item.component.scss'
 })

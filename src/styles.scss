@@ -13,6 +13,10 @@ body {
     flex: 1;
 }
 
+.item-list {
+    min-width: 100%;
+}
+
 app-auth {
     .c-min-w-300 {
     min-width: 300px; /* Минимальная ширина */

@@ -45,7 +45,35 @@ app.post('/register', (req, res) => {
       console.log('parseJsonData Registration', parseJsonData);
  
 })
- 
+
+
+app.post('/newPasswordSetter', (req, res) => {
+  // find users
+  console.log('req = ' + req.body?.login)
+  if (req.body?.login) {
+    const isUserExist = parseJsonData.users.map((user) => user.login === req.body?.login );
+    if (isUserExist) {
+        const userIndex = parseJsonData.users.findIndex(user => user.login === req.body?.login);
+        console.log('user before = ', parseJsonData)
+        parseJsonData.users[userIndex].password = req.body?.password;
+        console.log('user after = ', parseJsonData)
+        const json = JSON.stringify(parseJsonData);
+        fs.writeFileSync(userJson, json, 'utf-8', (data) => {}, (err) => {
+          console.log('err write file', err)
+        });
+
+        // send response
+        res.send("ok");
+    } else {
+      throw new Error('?????????');
+    }
+  } else {
+    throw new Error('/??????????????');
+  }
+  console.log('parseJsonData newPassword', parseJsonData);
+
+})
+
 //************** */ auth**************************************
 app.post('/auth', (req, res) => { 
   log('req.body',req.body);

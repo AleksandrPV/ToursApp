@@ -5,6 +5,7 @@ const serverApi = environment.apiUrl;
 export const API: IApi = {
     auth: `${serverApi}/auth`,
     registration: `${serverApi}/register`,
+    newPasswordSetting: `${serverApi}/newPasswordSetter`,
     tours: `${serverApi}/tours`,
     tour: `${serverApi}/tour`,
     config: `/config/config.json`,

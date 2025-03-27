@@ -18,6 +18,10 @@ export class UserService {
     return this.http.post(API.registration, user, {responseType: 'text'});
   }
 
+  setNewUserPassword(user: IUser): Observable<string> {
+    return this.http.post(API.newPasswordSetting, user, {responseType: 'text'});
+  }
+
   authUser(user: IUser): Observable<string> {
     return this.http.post<string>(API.auth, user);
   }
@@ -29,12 +33,12 @@ export class UserService {
 
   setUser(user: IUser): void {
     this.currentUser = user;
-    
   }
 
   setSessionStorageLogin(user: IUser): void {
     sessionStorage.setItem('login', user.login);
   }
+
   // private getUser(login: string): IUser | null {
   //   return this.userStorage.find(user => login === user.login) || null
   // }
