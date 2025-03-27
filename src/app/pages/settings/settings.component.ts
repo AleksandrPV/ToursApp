@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ISettings } from '../../models/settings';
 import { PasswordChangeComponent } from './password-change/password-change.component';
-
-
-
-
 
 @Component({
   selector: 'app-settings',
@@ -16,6 +12,8 @@ import { PasswordChangeComponent } from './password-change/password-change.compo
 })
 export class SettingsComponent implements OnInit {
   
+  @ViewChild(PasswordChangeComponent) passwordChangeComponent: PasswordChangeComponent;
+  
   menuItems: ISettings[] = [];
 
   ngOnInit(): void {
@@ -23,5 +21,11 @@ export class SettingsComponent implements OnInit {
       {label: "Смена пароля", path: "passwordChange"},
       {label: "Статистика", path: "statistics"}
     ]
+  }
+
+  onMenuItemClick(path: string): void {
+    if (path === 'passwordChange') {
+      this.passwordChangeComponent.show();
+    }
   }
 }

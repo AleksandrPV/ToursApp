@@ -24,13 +24,11 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
   login: string = null;
   oldPassword: string;
   newPassword: string;
+  visible: boolean = false;
 
   constructor(
     private userService: UserService,
-
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     console.log("OnInit -> PasswordChangeComponent")
@@ -40,9 +38,15 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
     console.log("OnDestroy -> PasswordChangeComponent")
   }
 
+  show(): void {
+    this.visible = true;
+  }
+
+  hide(): void {
+    this.visible = false;
+  }
+
   onNewPassword(ev: Event): void {
-    // console.log('ev = ' + ev)
-    // console.log('IUser Object: loging = ', + sessionStorage.getItem('login') + 'password = ' + this.newPassword)
     const postObj = {login: '111', password: this.newPassword} as IUser
     this.userService.setNewUserPassword(postObj).subscribe(
       () => {
@@ -51,7 +55,6 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
         console.log("ошибка")}
       })
     }
-
 }
 
 // sessionStorage.getItem('login')
