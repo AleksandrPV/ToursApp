@@ -1,5 +1,15 @@
 @use 'variables' as var;
 
+
+p-inputgroup {
+    &.p-inputgroup {
+        input {
+            flex-grow: 1;
+        }
+    }
+}
+
+
 .p-card {
     & :hover {
         opacity: .9;

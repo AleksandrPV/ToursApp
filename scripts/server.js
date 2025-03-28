@@ -48,8 +48,6 @@ app.post('/register', (req, res) => {
 
 
 app.post('/newPasswordSetter', (req, res) => {
-  // find users
-  console.log('req = ' + req.body?.login)
   if (req.body?.login) {
     const isUserExist = parseJsonData.users.map((user) => user.login === req.body?.login );
     if (isUserExist) {
@@ -59,16 +57,16 @@ app.post('/newPasswordSetter', (req, res) => {
         console.log('user after = ', parseJsonData)
         const json = JSON.stringify(parseJsonData);
         fs.writeFileSync(userJson, json, 'utf-8', (data) => {}, (err) => {
-          console.log('err write file', err)
+          console.log('Ошибка при записи файла', err)
         });
 
         // send response
         res.send("ok");
     } else {
-      throw new Error('?????????');
+      throw new Error('Нет такого пользователя');
     }
   } else {
-    throw new Error('/??????????????');
+    throw new Error('В запросе нет свойства login');
   }
   console.log('parseJsonData newPassword', parseJsonData);
 

@@ -1,23 +1,26 @@
 <!-- (input) = "searchTour($event)" -->
 <!-- [(ngModel)]="searchValue" -->
 
-<p-inputgroup>
-    <input 
-        
-        pInputText
-        placeholder="Поиск тура"
-        #searchInput
-    />
-    <p-inputgroup-addon>
-        <p-button icon="pi pi-search" severity="secondary" variant="text"/>
-    </p-inputgroup-addon>
-</p-inputgroup>
+<div class="grid grid-nogutter justify-content-center pt-5 pb-1">
+    <div class="col-12 md:col-6 lg:col-3 p-2">
+        <p-inputgroup>
+            <input 
+                pInputText
+                placeholder="Поиск тура"
+                #searchInput
+            />
+            <p-inputgroup-addon>
+                <p-button icon="pi pi-search" severity="secondary" variant="text"/>
+            </p-inputgroup-addon>
+        </p-inputgroup>
+    </div>
+</div>
 
-<div class="grid justify-content-center">
+<div class="cards grid flex-wrap border-round grid-nogutter justify-content-center ">
     @for (item of tours | search : searchInput.value : 'name' ; track item.id){
         <div 
             (click)="goToTour(item)"
-            class="m-2 col-3 flex justify-content-start"
+            class="card m-2 col-12 md:col-6 lg:col-4 xl:col-3 px-2"
         >
             <p-card
                 header="{{item.name}}"
@@ -26,18 +29,19 @@
             >
 
                 <ng-template #header> 
-                    <img src="/img/tours/{{item.img}}" class="flex w-full ">
+                    <img [ngSrc]="'/img/tours/' + item.img" class="flex w-full" width="300" height="100" priority>
                 </ng-template>
                 
                 <p>
                     {{item.description | slice:0:110}}...
                 </p>
                 
-
             </p-card>
         </div>
     }
     @empty {
         <div class="no-data">Нет данных!</div>
     }
+
 </div>
+

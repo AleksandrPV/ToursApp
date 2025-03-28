@@ -1,4 +1,14 @@
+@use 'variables' as var;
+
 :host {
-    width: 300px;
+    display: flex;
+
     flex-basis: 300px;
+    flex-shrink: 0;
+
+
+    background-color: var.$aside-background;
+    padding: 0;
+    margin-right: 0;
+    color: var.$aside-color;
 }

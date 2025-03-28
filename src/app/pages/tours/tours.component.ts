@@ -4,7 +4,7 @@ import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TourItemComponent } from '../tour-item/tour-item.component';
 import { ITour } from '../../models/ITour';
-import { SlicePipe } from '@angular/common';
+import { NgOptimizedImage, SlicePipe } from '@angular/common';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
@@ -12,7 +12,7 @@ import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-tours',
-  imports: [CardModule, SlicePipe, InputGroupAddonModule, InputGroupModule, ButtonModule, SearchPipe, FormsModule],
+  imports: [CardModule, SlicePipe, InputGroupAddonModule, InputGroupModule, ButtonModule, SearchPipe, FormsModule, NgOptimizedImage],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss'
 })
