@@ -33,9 +33,16 @@ export class UserService {
 
   setUser(user: IUser): void {
     this.currentUser = user;
+    if (user !== null) {
+      sessionStorage.setItem('login', user.login);
+    } else {
+      sessionStorage.setItem('login', '');
+    }
+
+    
   }
 
-  setSessionStorageLogin(user: IUser): void {
+  setSessionStorageLogin(user: IUser | null): void {
     sessionStorage.setItem('login', user.login);
   }
 

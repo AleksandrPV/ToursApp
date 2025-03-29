@@ -36,25 +36,11 @@ p-inputgroup {
 }
 
 
-p-button button.p-button {
-    
-    background-color: var.$main-orange;
-    border-color: var.$main-orange;
-    border: none;
-    transition: background-color 0.3s ease;
 
-    &.p-button-sm:hover {
-        background: var.$main-orange;
-        // background-color: var.$main-orange;
-        border-color: var.$main-orange;
-        border: none;
-        transition: background-color 0.3s ease;
-        }
 
-}
 .p-galleria-items {
     .p-galleria-item {
-        height: 250px;
+        height: 420px;
 
     }
 }

@@ -47,7 +47,7 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
   }
 
   onNewPassword(ev: Event): void {
-    const postObj = {login: '111', password: this.newPassword} as IUser
+    const postObj = {login: sessionStorage.getItem('login'), password: this.newPassword} as IUser
     this.userService.setNewUserPassword(postObj).subscribe(
       () => {
         console.log("успешно"),

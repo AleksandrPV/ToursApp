@@ -6,7 +6,7 @@
 
 </p-button>
 <div class="grid">
-    <div class="col-6">
+    <div class="col-12 md:col-6">
         @if (tourData) {
             <p-card
                 header="{{tourData.name}}"
@@ -24,7 +24,7 @@
         }
 
     </div>
-    <div class="col-6 nearest-tour">
+    <div class="col-12 md:col-6">
         <app-nearest-tours [tourNearest]="tourData"></app-nearest-tours>
     </div>
 </div>
