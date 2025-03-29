@@ -48,28 +48,32 @@ app.post('/register', (req, res) => {
 
 
 app.post('/newPasswordSetter', (req, res) => {
+  // find users
+  console.log('req = ' + req.body?.login)
   if (req.body?.login) {
-    const isUserExist = parseJsonData.users.map((user) => user.login === req.body?.login );
-    if (isUserExist) {
-        const userIndex = parseJsonData.users.findIndex(user => user.login === req.body?.login);
-        console.log('user before = ', parseJsonData)
-        parseJsonData.users[userIndex].password = req.body?.password;
-        console.log('user after = ', parseJsonData)
-        const json = JSON.stringify(parseJsonData);
-        fs.writeFileSync(userJson, json, 'utf-8', (data) => {}, (err) => {
-          console.log('Ошибка при записи файла', err)
-        });
+    // Обновляем массив пользователей с помощью map
+    parseJsonData.users = parseJsonData.users.map(user => {
+      if (user.login === req.body.login) {
+        // Создаем новый объект пользователя с обновленным паролем
+        return {
+          ...user,  // копируем все существующие поля
+          password: req.body.password  // обновляем только пароль
+        };
+      }
+      return user; // возвращаем пользователя без изменений, если логин не совпадает
+    });
 
-        // send response
-        res.send("ok");
-    } else {
-      throw new Error('Нет такого пользователя');
-    }
+    const json = JSON.stringify(parseJsonData);
+    fs.writeFileSync(userJson, json, 'utf-8', (data) => {}, (err) => {
+      console.log('err write file', err)
+    });
+
+    // send response
+    res.send("ok");
   } else {
-    throw new Error('В запросе нет свойства login');
+    throw new Error('Не указан логин пользователя');
   }
   console.log('parseJsonData newPassword', parseJsonData);
-
 })
 
 //************** */ auth**************************************
