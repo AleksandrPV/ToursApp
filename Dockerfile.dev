@@ -1,16 +1,21 @@
+# Базовый образ
 FROM node:20.12-bookworm-slim
 
+# Установка рабочей директории
 WORKDIR /app
 
-# Устанавливаем зависимости
+# Копирование package.json и package-lock.json
 COPY package*.json ./
+
+# Установка зависимостей
 RUN npm install
 
-# Копируем исходный код
+# Копирование исходного кода
 COPY . .
 
-# Открываем порты для Angular и API сервера
-EXPOSE 4200 3000
+# Открываем порт для разработки
+EXPOSE 4200
+EXPOSE 3000
 
-# Запускаем приложение в режиме разработки
-CMD ["npm", "run", "ServerWithNg"] 
+# Команда для запуска в режиме разработки
+CMD ["npm", "run", "start:dev"] 

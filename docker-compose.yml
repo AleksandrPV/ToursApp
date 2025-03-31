@@ -9,29 +9,27 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    networks:
-      - app-network
     ports:
-      - "4200:4200"  # Angular
+      - "4200:4200"
     volumes:
       - .:/app
       - /app/node_modules
+    networks:
+      - app-network
     environment:
       - NODE_ENV=development
-    command: npm start
 
   api:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    networks:
-      - app-network
     ports:
-      - "3000:3000"  # API Server
+      - "3000:3000"
     volumes:
       - .:/app
       - /app/node_modules
       - ./server-data:/app/server-data
+    networks:
+      - app-network
     environment:
-      - NODE_ENV=development
-    command: npm run startServer 
+      - NODE_ENV=development 

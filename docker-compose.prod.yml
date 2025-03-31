@@ -1,35 +1,32 @@
 version: '3.8'
 
-# Определяем общую сеть для контейнеров
 networks:
   app-network:
     driver: bridge
 
 services:
-  # API сервер
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - api
+
   api:
     build:
       context: .
-      dockerfile: Dockerfile
-      target: api
-    networks:
-      - app-network
+      dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
     volumes:
       - ./server-data:/app/server-data
-    environment:
-      - NODE_ENV=production
-
-  # Angular приложение с Nginx
-  angular:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: angular
     networks:
       - app-network
-    ports:
-      - "80:80"
-    depends_on:
-      - api 
+    environment:
+      - NODE_ENV=production 

@@ -102,3 +102,9 @@ MIT License - свободное использование и модифика�
 docker build -t example-angular -f Dockerfile .
 docker run --rm -ti --name angular_1 -p "127.0.0.1:4200:4200" example-angular
 ```
+
+запусе docker как разработка 
+docker-compose up --build
+
+запуск docker как производство 
+docker-compose -f docker-compose.prod.yml up --build
