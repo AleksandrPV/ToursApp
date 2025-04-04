@@ -16,11 +16,15 @@
     </div>
 </div>
 
-<div class="cards grid flex-wrap border-round grid-nogutter justify-content-center ">
+<div appHighlightActive
+selector='.tour-item'
+[initFirst]="true"
+(onEnter)="selectActive($event)"
+class="tours-list cards grid flex-wrap border-round grid-nogutter justify-content-center ">
     @for (item of tours | search : searchInput.value : 'name' ; track item.id){
         <div 
             (click)="goToTour(item)"
-            class="card m-2 col-12 md:col-6 lg:col-4 xl:col-3 px-2"
+            class="tour-item card m-2 col-12 md:col-6 lg:col-4 xl:col-3 px-2"
         >
             <p-card
                 header="{{item.name}}"
