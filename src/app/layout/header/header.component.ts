@@ -1,6 +1,6 @@
 
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { IUser } from '../../models/IUser';
 import { MenuItem } from 'primeng/api';
 import { UserService } from '../../services/user.service';
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Настройки',
-      routerLink: ['/settings'],
+      routerLink: ['settings'],
     },
     {
       label: 'Заказы',
@@ -43,15 +43,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private ngZone: NgZone) {}
 
   
   ngOnInit() {
     this.user = {"login": sessionStorage.getItem('login')};
     
-    setInterval(() => {
-      this.dateTime = new Date();
-    }, 1000);
+    this.ngZone.runOutsideAngular(() => {
+      setInterval(() => {
+        this.dateTime = new Date();
+      }, 1000);
+    })
+
   }
 
   ngOnDestroy(): void {}
@@ -66,7 +69,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.logoutIcon = val ? 'pi pi-sign-in' : 'pi pi-user'
     } else {
-      
       this.logoutIcon = val ? 'pi pi-sign-out' : 'pi pi-user';
     }
   }

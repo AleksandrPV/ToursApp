@@ -24,7 +24,6 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
   login: string = null;
   oldPassword: string;
   newPassword: string;
-  visible: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -36,14 +35,6 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("OnDestroy -> PasswordChangeComponent")
-  }
-
-  show(): void {
-    this.visible = true;
-  }
-
-  hide(): void {
-    this.visible = false;
   }
 
   onNewPassword(ev: Event): void {

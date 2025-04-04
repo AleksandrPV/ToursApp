@@ -4,6 +4,7 @@
       <div class="col">
         <p-button
           [label]="item.label"
+          [routerLink]="item.path"
           styleClass="item-list p-button-link"
           (click)="onMenuItemClick(item.path)"
         ></p-button>
@@ -16,7 +17,7 @@
   </div>
 
   <div class="col-3">
-    <app-password-change />
+    <router-outlet></router-outlet>
   </div>
 </div>
 
