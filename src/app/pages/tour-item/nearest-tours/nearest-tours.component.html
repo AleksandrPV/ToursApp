@@ -1,6 +1,6 @@
 
-<div class="grid grid-nogutter justify-content-center pt-5 pb-1">
-    <div class="col-12 md:col-6 lg:col-3 p-2">
+<div class="grid grid-nogutter">
+    <div class="grid grid-nogutter">
         <p-inputgroup>
             <input 
                 pInputText
@@ -12,19 +12,21 @@
             </p-inputgroup-addon>
         </p-inputgroup>
     </div>
+    <div class="grid grid-nogutter">
+        <p-galleria 
+            (activeIndexChange)="activeIndexChange($event)"
+            class="tour-item-galleria"
+            [value]="toursArr()" 
+            [showIndicators]="true"
+            [showThumbnails]="false"
+            [containerStyle]="{ 'max-width': '440px', 'max-height': '440px', 'width': '440px', 'height': '440px' }"
+        >
+            <ng-template #item let-item>
+                <img [ngSrc]="'/img/tours/'+item.img" priority fill/>
+            </ng-template>
+        </p-galleria>
+    </div>
 </div>
 
-<div class="card p-2">
-    <p-galleria 
-        (activeIndexChange)="activeIndexChange($event)"
-        class="tour-item-galleria"
-        [value]="toursArr()" 
-        [showIndicators]="true"
-        [showThumbnails]="false"
-        [containerStyle]="{ 'max-width': '440px' }"
-    >
-        <ng-template #item let-item>
-            <img [ngSrc]="'/img/tours/'+item.img" priority fill/>
-        </ng-template>
-    </p-galleria>
-</div>
+
+
