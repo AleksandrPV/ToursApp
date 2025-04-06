@@ -25,6 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAppInitializer(() => initializeApp())
     // provideAppInitializer(() => initializeApp(inject(ConfigService)))
-
+    // inject(ConfigService)
   ]
 };

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, model, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input,
+   model, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ITour } from '../../../models/ITour';
 import { ToursService } from '../../../services/tours.service';
 import { GalleriaModule } from 'primeng/galleria';
@@ -9,6 +10,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { CardModule } from 'primeng/card';
 import { fromEvent, Subscription } from 'rxjs';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-nearest-tours',
@@ -16,6 +18,7 @@ import { fromEvent, Subscription } from 'rxjs';
             CardModule,
             InputGroupAddonModule,
             InputGroupModule,
+            InputTextModule,
             ButtonModule,
             FormsModule,
             NgOptimizedImage
@@ -50,22 +53,19 @@ export class NearestToursComponent implements OnInit, OnChanges, AfterViewInit, 
   ngOnChanges(changes: SimpleChanges): void {
     const tour = changes['tourNearest']?.currentValue as ITour;
 
-    if (tour?.locationId) {
-      this.tourService.getNearestTourByLocationId(tour.locationId).subscribe((data) => {
+    if (tour?.locationId && this.activeLocationId !== tour?.locationId) {
+      this.activeLocationId = tour?.locationId;
+      this.tourService.getNearestTourByLocationId(this.activeLocationId).subscribe((data) => {
         this.toursArr.set(data);
-      })
+        this.toursArrCopy.set(data);
+      });
     }
     console.log('changes = ', changes['tourNearest'])
   }
 
-
   ngAfterViewInit(): void {
+    console.log('searchInput afterView', this.searchInput)
 
-    // document.body ->
-    // nearest-tours.component.ts:59 ERROR RuntimeError: NG0953: Unexpected emit for destroyed `OutputRef`. The owning directive/component is destroyed.
-    // at Object.next (nearest-tours.component.ts:66:23)
-
-    console.log('searchInput', this.searchInput)
     const eventObservable = fromEvent<InputEvent>(this.searchInput.nativeElement, 'input');
     this.subscription = eventObservable.subscribe((ev) => {
       const inputTargetValue = (ev.target as HTMLInputElement).value;
@@ -77,6 +77,14 @@ export class NearestToursComponent implements OnInit, OnChanges, AfterViewInit, 
         this.toursArr.set(newTours);
       }
     })
+  }
+
+  activeIndexChange(index: number) {
+    console.log('index', index)
+    const tours = this.toursArr();
+    const activeTour = tours.find((el, i) => i === index);
+
+    this.onTourChange.emit(activeTour);
   }
 
 }
