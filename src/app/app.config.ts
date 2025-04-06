@@ -7,8 +7,9 @@ import Aura from '@primeng/themes/aura';
 import { provideHttpClient } from '@angular/common/http';
 import { ConfigService } from './services/config.service';
 
-function initializeApp(config: ConfigService) {
-  return config.loadPromise()
+function initializeApp() {
+  // config: ConfigService
+  // return config.loadPromise()
 }
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +23,8 @@ export const appConfig: ApplicationConfig = {
         }
     }),
     provideHttpClient(),
-    provideAppInitializer(() => initializeApp(inject(ConfigService)))
+    provideAppInitializer(() => initializeApp())
+    // provideAppInitializer(() => initializeApp(inject(ConfigService)))
+
   ]
 };
