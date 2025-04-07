@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUser, IUserRegister } from '../models/IUser';
+import { IUser, IUserRegister, UserStorageKey } from '../models/IUser';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../shared/api';
 import { Observable } from 'rxjs';
@@ -18,10 +18,6 @@ export class UserService {
     return this.http.post(API.registration, user, {responseType: 'text'});
   }
 
-  setNewUserPassword(user: IUser): Observable<string> {
-    return this.http.post(API.newPasswordSetting, user, {responseType: 'text'});
-  }
-
   authUser(user: IUser): Observable<string> {
     return this.http.post<string>(API.auth, user);
   }
@@ -34,16 +30,19 @@ export class UserService {
   setUser(user: IUser): void {
     this.currentUser = user;
     if (user !== null) {
-      sessionStorage.setItem('login', user.login);
+      sessionStorage.setItem(UserStorageKey, user.login);
     } else {
-      sessionStorage.setItem('login', '');
+      sessionStorage.setItem(UserStorageKey, '');
     }
 
-    
+  }
+
+  setNewUserPassword(user: IUser): Observable<string> {
+    return this.http.post(API.newPasswordSetting, user, {responseType: 'text'});
   }
 
   setSessionStorageLogin(user: IUser | null): void {
-    sessionStorage.setItem('login', user.login);
+    sessionStorage.setItem(UserStorageKey, user.login);
   }
 
   // private getUser(login: string): IUser | null {
