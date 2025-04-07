@@ -76,6 +76,7 @@ export class NearestToursComponent implements OnInit, OnChanges, AfterViewInit, 
         const newTours = this.tourService.searchTours(this.toursArrCopy(), inputTargetValue);
         this.toursArr.set(newTours);
       }
+      console.log('toursArr ***** = ', this.toursArr())
     })
   }
 

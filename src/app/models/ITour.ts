@@ -14,8 +14,14 @@ export interface ITour {
     price: string,
     img: string,
     type?: string,
-    locationId?: string
+    locationId?: string,
+    date: Date
 }
 export interface ITourServerRes {
     tours: ITour[]
+}
+
+export interface ITourTypes {
+    key: string,
+    label: string
 }

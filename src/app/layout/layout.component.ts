@@ -12,14 +12,15 @@ import { Subscription, filter, map, take, tap } from 'rxjs';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit {
 
   showAside = false;
-  subscription: Subscription;
   constructor(private router: Router, private activateRoute: ActivatedRoute) {}
   
   ngOnInit(): void {
-    
+
+    this.showAside = this.recursFindChildData(this.activateRoute.snapshot, 'showAside');
+
     const subscription = this.router.events.pipe(
       filter((routes) => routes instanceof ActivationEnd),
       map((data) => data.snapshot )
@@ -35,9 +36,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     } else {
       return !!children.data[prop];
     }
-  }
-  ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
   }
 
 }

@@ -7,8 +7,9 @@
         <div class="flex-grow-1">  
             <router-outlet></router-outlet>
         </div>
-        <app-aside></app-aside>
-
+        @if (showAside) {
+            <app-aside></app-aside>
+        }
     </main>
     <footer>
         <app-footer></app-footer>

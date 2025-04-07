@@ -20,6 +20,13 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
         theme: {
             preset: Aura
+        },
+        translation: {
+          dayNames: ['Понедельник, Вторник, Среда, Четверг, Пятница, Субота, Воскресенье'],
+          dayNamesMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
+          monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+          clear: 'Очистить',
+          today: 'Сегодня'
         }
     }),
     provideHttpClient(),

@@ -32,7 +32,7 @@ export const routes: Routes = [
             children: [
             { path: "", redirectTo: 'password-change', pathMatch: 'full'},
             { path: "password-change", component: PasswordChangeComponent},
-            { path: "statistics", component: StatisticComponent}
+            { path: "statistics", component: StatisticComponent, data: {showAside: true}}
         ]},
     ]},
     { path: "**", component: NotFound404Component},

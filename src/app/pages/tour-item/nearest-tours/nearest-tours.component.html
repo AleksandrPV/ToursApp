@@ -1,6 +1,5 @@
 
-<div class="grid grid-nogutter">
-    <div class="grid grid-nogutter">
+    <div class="grid grid-nogutter w-6">
         <p-inputgroup>
             <input 
                 pInputText
@@ -12,21 +11,28 @@
             </p-inputgroup-addon>
         </p-inputgroup>
     </div>
-    <div class="grid grid-nogutter">
-        <p-galleria 
-            (activeIndexChange)="activeIndexChange($event)"
-            class="tour-item-galleria"
-            [value]="toursArr()" 
-            [showIndicators]="true"
-            [showThumbnails]="false"
-            [containerStyle]="{ 'max-width': '440px', 'max-height': '440px', 'width': '440px', 'height': '440px' }"
-        >
-            <ng-template #item let-item>
-                <img [ngSrc]="'/img/tours/'+item.img" priority fill/>
-            </ng-template>
-        </p-galleria>
-    </div>
-</div>
+    @if (this.toursArr().length > 0) {
+        <div class="grid grid-nogutter w-7">
+            <p-galleria 
+                (activeIndexChange)="activeIndexChange($event)"
+                class="tour-item-galleria"
+                [value]="toursArr()" 
+                [showIndicators]="true"
+                [showThumbnails]="false"
+                [containerStyle]="{ 'max-width': '440px', 'max-height': '500px', 'width': '440px', 'height': '470px', 'flex-grow': '1'}"
+            >
+                <ng-template #item let-item>
+                    <img [ngSrc]="'/img/tours/'+item.img" priority fill/>
+                </ng-template>
+            </p-galleria>
+        </div>
+    } 
+    @else {
+        <div class="grid grid-nogutter w-7">
+            <p>нет туров</p>
+        </div>
+        
+    }
 
 
 
