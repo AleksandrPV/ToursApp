@@ -3,7 +3,7 @@ import { CardModule } from 'primeng/card';
 import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TourItemComponent } from '../tour-item/tour-item.component';
-import { ITour } from '../../models/ITour';
+import { ICountriesResponseItem, ITour, ITourServerRes } from '../../models/ITour';
 import { NgOptimizedImage, SlicePipe } from '@angular/common';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
@@ -11,7 +11,6 @@ import { ButtonModule } from 'primeng/button';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { HighlightActiveDirective } from '../../shared/directives/highlight-active.directive';
-import { Subscription } from 'rxjs';
 import { isValid } from 'date-fns';
 
 @Component({
@@ -41,7 +40,7 @@ export class ToursComponent {
   constructor (
     private toursService: ToursService,
     private route: ActivatedRoute,
-    private router: Router ) {}
+    private router: Router) {}
 
   ngOnInit(): void {
 
@@ -79,10 +78,17 @@ export class ToursComponent {
 
     console.log('Activated route = ', this.route)
     this.toursService.getTours().subscribe((data) => {
-      if (Array.isArray(data?.tours)) {
-        this.tours = data.tours;
-        this.toursStore = [... data.tours]
+      console.log("________DATA = ",  data)
+            
+      if (Array.isArray(data)) {
+        this.tours = data;
+        this.toursStore = [... data]
       }
+      // toursWithCountries
+      // if (Array.isArray(data?.tours)) {
+      //   this.tours = data.tours;
+      //   this.toursStore = [... data.tours]
+      // }
     })
 
   }

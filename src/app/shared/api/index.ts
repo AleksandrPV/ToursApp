@@ -10,4 +10,5 @@ export const API: IApi = {
     tour: `${serverApi}/tour`,
     config: `/config/config.json`,
     nearestTours: `${serverApi}/nearestTours`,
+    countries: `${serverApi}/countries`,
 }

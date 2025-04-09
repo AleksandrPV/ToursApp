@@ -36,9 +36,9 @@ class="tours-list cards grid flex-wrap border-round grid-nogutter justify-conten
                     <img [ngSrc]="'/img/tours/' + item.img" class="flex w-full" width="300" height="100" priority>
                 </ng-template>
                 
-                <p>
-                    {{item.description | slice:0:110}}...
-                </p>
+                <p>{{item.description | slice:0:110}}...</p>
+
+                <p>Страна: {{item.country?.name_ru}} <img [src]="item.country?.flag_url" alt=""></p>
                 
             </p-card>
         </div>

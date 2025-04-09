@@ -6,4 +6,5 @@ export interface IApi {
     tour: string,
     config: string,
     nearestTours: string,
+    countries: string,
 }
