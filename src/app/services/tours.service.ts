@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map, Observable, Subject } from 'rxjs';
+import { catchError, delay, forkJoin, map, Observable, of, Subject, tap } from 'rxjs';
 import { API } from '../shared/api';
 import { ICountriesResponseItem, ITour, ITourServerRes, ITourTypes } from '../models/ITour';
 import { IApi } from '../models/IApi';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +19,21 @@ export class ToursService {
   private tourDateSubject = new Subject<Date>();
   readonly tourDate$ = this.tourDateSubject.asObservable();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private loaderService: LoaderService) { }
 
   getTours(): Observable<ITour[]> {
+
+    this.loaderService.setLoader(true);
+    console.log('__________loader service ', this.loaderService);
     const countries = this.http.get<ICountriesResponseItem[]>(API.countries);
     const tours = this.http.get<ITourServerRes>(API.tours);
     // const testObservable = of(1).pipe(
     // delay(4000)
     // )
+
     // parallel requests
     return forkJoin<[ICountriesResponseItem[], ITourServerRes]>([countries, tours]).pipe(
+      delay(1500),
       map((data) => {
         console.log('***** data', data)
         let toursWithCountries = [] as ITour[];
@@ -48,7 +54,15 @@ export class ToursService {
           });
         }
         return toursWithCountries;
-      })
+      }),
+      tap((data) => {
+        //hide loader
+        this.loaderService.setLoader(false);
+      }),
+      catchError((err) => {
+        this.loaderService.setLoader(false);
+        return of(null)
+      }),
     )
   }
 
@@ -88,6 +102,10 @@ export class ToursService {
 
   initChangeTourDate(val: Date): void {
     this.tourDateSubject.next(val);
+  }
+
+  getCountryByCode(code: string): Observable<any> {
+    return this.http.get<any>(API.countryByCode, {params: {codes: code}})
   }
 
 }
