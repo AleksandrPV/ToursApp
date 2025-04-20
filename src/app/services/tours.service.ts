@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, delay, forkJoin, map, Observable, of, Subject, tap } from 'rxjs';
+import { catchError, delay, forkJoin, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { API } from '../shared/api';
-import { ICountriesResponseItem, ITour, ITourServerRes, ITourTypes } from '../models/ITour';
+import { Coords, ICountriesResponseItem, ITour, ITourServerRes, ITourTypes } from '../models/ITour';
 import { IApi } from '../models/IApi';
 import { LoaderService } from './loader.service';
+import { MapService } from './map.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,11 @@ export class ToursService {
   private tourDateSubject = new Subject<Date>();
   readonly tourDate$ = this.tourDateSubject.asObservable();
 
-  constructor(private http:HttpClient, private loaderService: LoaderService) { }
+  constructor(
+    private http:HttpClient,
+    private loaderService: LoaderService,
+    private mapService: MapService
+  ) { }
 
   getTours(): Observable<ITour[]> {
 
@@ -105,7 +110,37 @@ export class ToursService {
   }
 
   getCountryByCode(code: string): Observable<any> {
-    return this.http.get<any>(API.countryByCode, {params: {codes: code}})
+    return this.http.get<Coords[]>(API.countryByCode, {params: {codes: code}}).pipe(
+
+      //send new data
+      map((countrieDataArr) => countrieDataArr[0]),
+
+      switchMap((countrieData) => {
+        console.log('countrieData ', countrieData);
+        const coords = {lat: countrieData.latlng[0], lng: countrieData.latlng[1]};
+
+        //newObservable
+        return this.mapService.getWeather(coords).pipe(
+          map((weatherResponce) => {
+
+            const current = weatherResponce.current;
+            const hourly = weatherResponce.hourly;
+
+            const weatherData = {
+              isDay: current.is_day,
+              snowfall: current.snowfall,
+              rain: current.rain,
+              currentWeather: hourly.temperature_2m[15]
+            };
+
+            console.log('weatherData ', weatherData);
+            return {countrieData, weatherData};
+          
+          })
+          
+        )
+      })
+    )
   }
 
 }

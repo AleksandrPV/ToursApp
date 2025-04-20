@@ -121,10 +121,10 @@ export class ToursComponent {
   getCountryDetail(ev: Event, code: string): void {
     ev.stopPropagation();
     this.toursService.getCountryByCode(code).subscribe((data) => {
-      if (Array.isArray(data)) {
-        const countryInfo = data[0];
-        console.log('countryInfo', countryInfo)
-        this.location = {lat: countryInfo.latlng[0], lng: countryInfo.latlng[1]};
+      if (data) {
+        const countrieInfo = data.countrieData;
+        console.log('countrieInfo', countrieInfo)
+        this.location = {lat: countrieInfo.latlng[0], lng: countrieInfo.latlng[1]};
         this.showModal = true;
       }
     })  

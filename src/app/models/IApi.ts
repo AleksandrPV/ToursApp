@@ -7,5 +7,6 @@ export interface IApi {
     config: string,
     nearestTours: string,
     countries: string,
-    countryByCode: string
+    countryByCode: string,
+    getWeather: string,
 }

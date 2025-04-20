@@ -11,5 +11,6 @@ export const API: IApi = {
     config: `/config/config.json`,
     nearestTours: `${serverApi}/nearestTours`,
     countries: `${serverApi}/countries`,
-    countryByCode: 'https://restcountries.com/v3.1/alpha'
+    countryByCode: 'https://restcountries.com/v3.1/alpha',
+    getWeather: "https://api.open-meteo.com/v1/forecast",
 }
