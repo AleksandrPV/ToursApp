@@ -34,3 +34,7 @@ export interface ICountriesResponseItem {
     name_ru: string,
     flag_url: string
 }
+export interface ILocation {
+    lat: number;
+    lng: number;
+}
