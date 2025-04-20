@@ -15,6 +15,12 @@
         },
         "@schematics/angular:pipe": {
           "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
         }
       },
       "i18n": {
@@ -44,7 +50,8 @@
             "styles": [
               "src/styles.scss",
               "./node_modules/primeflex/primeflex.css",
-              "./node_modules/primeicons/primeicons.css"
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/ol/ol.css"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {

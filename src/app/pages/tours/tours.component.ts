@@ -3,7 +3,7 @@ import { CardModule } from 'primeng/card';
 import { ToursService } from '../../services/tours.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TourItemComponent } from '../tour-item/tour-item.component';
-import { ICountriesResponseItem, ITour, ITourServerRes } from '../../models/ITour';
+import { ICountriesResponseItem, ILocation, ITour, ITourServerRes } from '../../models/ITour';
 import { NgOptimizedImage, SlicePipe } from '@angular/common';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
@@ -12,7 +12,8 @@ import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { HighlightActiveDirective } from '../../shared/directives/highlight-active.directive';
 import { isValid } from 'date-fns';
-
+import { DialogModule } from 'primeng/dialog';
+import { MapComponent } from '../../shared/components/map/map.component';
 @Component({
   selector: 'app-tours',
   imports: [
@@ -24,7 +25,9 @@ import { isValid } from 'date-fns';
     SearchPipe,
     FormsModule,
     NgOptimizedImage,
-    HighlightActiveDirective
+    HighlightActiveDirective,
+    DialogModule,
+    MapComponent
   ],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss',
@@ -34,8 +37,8 @@ export class ToursComponent {
   
   tours: ITour[] = [];
   toursStore: ITour[] = [];
-  // searchValue: string = ''; переменная не нужна, так как используем шаблонную переменную
-  // subscription: Subscription;
+  showModal = false;
+  location: ILocation = null;
 
   constructor (
     private toursService: ToursService,
@@ -113,5 +116,17 @@ export class ToursComponent {
     if (targetTour) {
       this.goToTour(targetTour);
     }
+  }
+
+  getCountryDetail(ev: Event, code: string): void {
+    ev.stopPropagation();
+    this.toursService.getCountryByCode(code).subscribe((data) => {
+      if (Array.isArray(data)) {
+        const countryInfo = data[0];
+        console.log('countryInfo', countryInfo)
+        this.location = {lat: countryInfo.latlng[0], lng: countryInfo.latlng[1]};
+        this.showModal = true;
+      }
+    })  
   }
 }

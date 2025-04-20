@@ -38,7 +38,10 @@ class="tours-list cards grid flex-wrap border-round grid-nogutter justify-conten
                 
                 <p>{{item.description | slice:0:110}}...</p>
 
-                <p>Страна: {{item.country?.name_ru}} <img [src]="item.country?.flag_url" alt=""></p>
+                <p (click)="getCountryDetail($event, item.country?.iso_code2)">
+                    Страна: {{item.country?.name_ru}}
+                    <img [src]="item.country?.flag_url" alt="">
+                </p>
                 
             </p-card>
         </div>
@@ -48,4 +51,16 @@ class="tours-list cards grid flex-wrap border-round grid-nogutter justify-conten
     }
 
 </div>
+
+<p-dialog [(visible)]="showModal" [modal]="true" [style]="{ width: '50rem' }">
+
+    @if (showModal) {
+        <app-map [location]="location" />
+    }
+
+    <ng-template #footer>
+        <p-button label="Закрыть" [text]="true" severity="secondary" (click)="showModal=false" />
+    </ng-template>
+
+</p-dialog>
 
