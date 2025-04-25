@@ -9,6 +9,7 @@ import { authGuard } from './shared/guards/auth.guard';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { PasswordChangeComponent } from './pages/settings/password-change/password-change.component';
 import { StatisticComponent } from './pages/settings/statistic/statistic.component';
+import { OrderComponent } from './pages/order/order.component';
  
 
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
             { path: "password-change", component: PasswordChangeComponent},
             { path: "statistics", component: StatisticComponent, data: {showAside: true}}
         ]},
+        { path: 'order/:id', component: OrderComponent},
     ]},
     { path: "**", component: NotFound404Component},
 

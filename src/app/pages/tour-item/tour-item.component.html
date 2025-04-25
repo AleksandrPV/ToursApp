@@ -18,6 +18,14 @@
                     <p>{{tourData.description}}</p>     
                 </ng-template>
             </p-card>
+
+            <p-button
+            label="Сформировать заказ"
+            styleClass="my-3"
+            (onClick)="initOrder($event)"
+            >
+  
+            </p-button>
         } @else { 
             <p>Нет данных!</p>
         }
