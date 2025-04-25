@@ -14,6 +14,7 @@ import { HighlightActiveDirective } from '../../shared/directives/highlight-acti
 import { isValid } from 'date-fns';
 import { DialogModule } from 'primeng/dialog';
 import { MapComponent } from '../../shared/components/map/map.component';
+import { BasketService } from '../../services/basket.service';
 @Component({
   selector: 'app-tours',
   imports: [
@@ -42,6 +43,7 @@ export class ToursComponent {
 
   constructor (
     private toursService: ToursService,
+    private basketService: BasketService,
     private route: ActivatedRoute,
     private router: Router) {}
 
@@ -128,5 +130,15 @@ export class ToursComponent {
         this.showModal = true;
       }
     })  
+  }
+
+  setItemToBasket(ev: Event, item: ITour):void {
+    ev.stopPropagation();
+    this.basketService.setItemToBasket(item);
+  }
+
+  removeItemFromBasket(ev: Event, item: ITour):void {
+    ev.stopPropagation();
+    this.basketService.removeItemFromBasket(item);
   }
 }

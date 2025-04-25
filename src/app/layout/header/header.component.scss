@@ -15,9 +15,19 @@
     color: var.$header-color;
 
     &__right-block {
+        display: flex;
 
         & .user-info {
-            width: 150px;
+            width: 100px;
+        }
+        & .basket {
+            display: flex;
+            align-items: center;
+            & .basket-icon-wrap {
+                position: relative;
+                top: 10px;
+                font-size: .8rem;
+            }
         }
     }
 

@@ -17,7 +17,8 @@ export interface ITour {
     locationId?: string,
     date: Date,
     country?: ICountriesResponseItem,
-    code?: string
+    code?: string,
+    inBasket?: boolean
 }
 export interface ITourServerRes {
     tours: ITour[]

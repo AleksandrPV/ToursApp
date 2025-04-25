@@ -7,10 +7,21 @@ import { UserService } from '../../services/user.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { Menubar, MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { ITour } from '../../models/ITour';
+import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'app-header',
-  imports: [ DatePipe, MenubarModule, ButtonModule, RouterModule, MenubarModule],
+  imports: [ DatePipe, 
+    MenubarModule,
+    ButtonModule, 
+    RouterModule, 
+    MenubarModule, 
+    OverlayBadgeModule, 
+    AsyncPipe ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 
@@ -21,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logoutIcon = 'pi pi-user';
   loginIcon = 'pi pi-sign-in';
   isMenuOpen = false;
-
+  basketStore$: Observable<ITour[]> = null;
 
 
   menuItems: MenuItem[] = [
@@ -43,10 +54,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private userService: UserService, private router: Router, private ngZone: NgZone) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private ngZone: NgZone,
+    private basketService: BasketService
+  ) {}
 
   
   ngOnInit() {
+
+    this.basketStore$ = this.basketService.basketStore$;
+
     this.user = {"login": sessionStorage.getItem('login')};
     
     this.ngZone.runOutsideAngular(() => {

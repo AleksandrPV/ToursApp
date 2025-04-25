@@ -14,7 +14,21 @@
     
         <!-- right block with user actions and data -->
         <div class="layout-header__right-block flex flex-1 justify-content-end align-items-center">
+
             <div class="user-info"></div>
+
+            <div class="basket mr-4">
+                <p-overlaybadge
+                    badgeSize="small"
+                    [value]="(basketStore$ | async).length"
+                    severity="danger"
+                >
+                    <div class="basket-icon-wrap">
+                        <i class="pi pi-cart-arrow-down"></i>
+                    </div>
+                </p-overlaybadge>
+            </div>
+            
             <div class="logout px-1">
                 <p-button
                 [icon]="logoutIcon"
