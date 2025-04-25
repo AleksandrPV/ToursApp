@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { ButtonModule } from 'primeng/button';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-order',
@@ -26,7 +27,8 @@ export class OrderComponent implements OnInit {
   userForm: FormGroup;
 
   constructor(private tourService: ToursService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,17 @@ export class OrderComponent implements OnInit {
       age: new FormControl(''),
       citizenship: new FormControl(''),
     })
+  }
+
+  initOrder(): void {
+    const userLogin = this.userService.getUser().login;
+    const personalData = this.userForm.getRawValue();
+    const postObj = {
+      userLogin,
+      tourId: this.tourId,
+      personalData: [personalData]
+    }
+    this.tourService.postOrder(postObj).subscribe();
   }
 
 }

@@ -9,4 +9,5 @@ export interface IApi {
     countries: string,
     countryByCode: string,
     getWeather: string,
+    order: string
 }

@@ -23,8 +23,7 @@ export class UserService {
   }
 
   getUser(): IUser {
-    return this.currentUser
-
+    return this.currentUser;
   }
 
   setUser(user: IUser): void {

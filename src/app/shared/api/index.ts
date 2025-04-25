@@ -13,4 +13,5 @@ export const API: IApi = {
     countries: `${serverApi}/countries`,
     countryByCode: 'https://restcountries.com/v3.1/alpha',
     getWeather: "https://api.open-meteo.com/v1/forecast",
+    order: `${serverApi}/order`
 }
