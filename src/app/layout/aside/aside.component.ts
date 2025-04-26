@@ -40,7 +40,7 @@ export class AsideComponent implements OnInit {
     this.tourService.initChangeTourDate(event);
   }
 
-  clearData(): void {
-
+  clearDataFilter(event: Date): void {
+    this.tourService.clearDataFilter(event);
   }
 }

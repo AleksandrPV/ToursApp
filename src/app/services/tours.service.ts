@@ -43,7 +43,7 @@ export class ToursService {
       delay(1000),
       withLatestFrom(this.basketService.basketStore$),
       map(([data, basketData]) => {
-
+      console.log('basketData ', basketData)
         let toursWithCountries = [] as ITour[];
         const toursArr = data[1].tours;
         const countriesMap = new Map();
@@ -56,11 +56,15 @@ export class ToursService {
 
           toursWithCountries = toursArr.map((tour) => {
             const isTourInBasket = basketData.find((basketTour) => {
-              basketTour.id === tour.id
+              console.log('****', basketTour.id === tour.id)
+              console.log('****', basketTour.id, tour.id)
+             return basketTour.id === tour.id
             });
 
             if (isTourInBasket) {
               tour.inBasket = true;
+
+              console.log('ok!!!!!')
             }
             return {
               ...tour,
@@ -116,6 +120,11 @@ export class ToursService {
   }
 
   initChangeTourDate(val: Date): void {
+    this.tourDateSubject.next(val);
+  }
+
+  clearDataFilter(val: Date) {
+    console.log('ClearDataFilter !!!!!!------')
     this.tourDateSubject.next(val);
   }
 
