@@ -9,11 +9,9 @@ export const errorInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, n
   
   return next(req).pipe(
     tap(() => {
-      console.log('_____********req', req)
     }),
 
     catchError((err) => {
-      console.log('______*********err ', err)
       messageService.add({severity: 'error', summary: err?.message});
       return throwError(() => err);
     })

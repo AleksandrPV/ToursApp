@@ -51,7 +51,6 @@ export class ToursComponent {
   ngOnInit(): void {
 
     this.toursService.tourType$.subscribe((tour) => {
-      console.log('tour type', tour)
       switch (tour?.key) {
         case 'single':
           this.tours = this.toursStore.filter((item) => item.type === 'single');
@@ -68,8 +67,6 @@ export class ToursComponent {
 
     //Date 
     this.toursService.tourDate$.subscribe((date) => {
-      console.log('******date', date)
-
       this.tours = this.toursStore.filter((tour) => {
         if (isValid(new Date(tour.date))) {
 
@@ -82,10 +79,8 @@ export class ToursComponent {
       });
     })
 
-    console.log('Activated route = ', this.route)
-    this.toursService.getTours().subscribe((data) => {
-      console.log("________DATA = ",  data)
-            
+
+    this.toursService.getTours().subscribe((data) => {    
       if (Array.isArray(data)) {
         this.tours = data;
         this.toursStore = [... data]
@@ -114,7 +109,6 @@ export class ToursComponent {
   }
 
   selectActive(index: number): void {
-    console.log('index', index)
     const targetTour = this.tours.find((tour, i) => i === index);
     if (targetTour) {
       this.goToTour(targetTour);
@@ -126,7 +120,6 @@ export class ToursComponent {
     this.toursService.getCountryByCode(code).subscribe((data) => {
       if (data) {
         const countrieInfo = data.countrieData;
-        console.log('countrieInfo', countrieInfo)
         this.location = {lat: countrieInfo.latlng[0], lng: countrieInfo.latlng[1]};
         this.selectedTour = tour;
         this.showModal = true;

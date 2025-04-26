@@ -27,7 +27,6 @@ export class HighlightActiveDirective implements AfterViewInit, OnInit, OnChange
 
   ngAfterViewChecked() {
     const isItemsLoaded = this.el.nativeElement.querySelectorAll(this.selector);
-    console.log('***');
     if (this.initFirst && isItemsLoaded?.length && !this.isLoaded) {
       this.isLoaded = true;
       this.changeIndex(0);
@@ -39,11 +38,8 @@ export class HighlightActiveDirective implements AfterViewInit, OnInit, OnChange
   ngOnChanges(changes: SimpleChanges): void {}
 
   changeIndex(shift: -1 | 1 | 0) {
-    
     const items = [...this.el.nativeElement.querySelectorAll(this.selector)];
     const index = items.findIndex((e: Element) => e.classList.contains('active'));
-    console.log('items', items);
-    
     if (!items.length) {
       return;
     }
@@ -65,8 +61,6 @@ export class HighlightActiveDirective implements AfterViewInit, OnInit, OnChange
   }
 
   initKeyUp(event: KeyboardEvent) {
-    console.log('event', event);
-
     if (event.key === 'ArrowRight') {
       this.changeIndex(1);
     } else if (event.key === 'ArrowLeft') {

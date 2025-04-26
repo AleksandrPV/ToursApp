@@ -29,9 +29,7 @@ export class ToursService {
   ) { }
 
   getTours(): Observable<ITour[]> {
-
     this.loaderService.setLoader(true);
-    console.log('__________loader service ', this.loaderService);
     const countries = this.http.get<ICountriesResponseItem[]>(API.countries);
     const tours = this.http.get<ITourServerRes>(API.tours);
     // const testObservable = of(1).pipe(
@@ -43,7 +41,6 @@ export class ToursService {
       delay(1000),
       withLatestFrom(this.basketService.basketStore$),
       map(([data, basketData]) => {
-      console.log('basketData ', basketData)
         let toursWithCountries = [] as ITour[];
         const toursArr = data[1].tours;
         const countriesMap = new Map();
@@ -56,15 +53,11 @@ export class ToursService {
 
           toursWithCountries = toursArr.map((tour) => {
             const isTourInBasket = basketData.find((basketTour) => {
-              console.log('****', basketTour.id === tour.id)
-              console.log('****', basketTour.id, tour.id)
              return basketTour.id === tour.id
             });
 
             if (isTourInBasket) {
               tour.inBasket = true;
-
-              console.log('ok!!!!!')
             }
             return {
               ...tour,
@@ -124,7 +117,6 @@ export class ToursService {
   }
 
   clearDataFilter(val: Date) {
-    console.log('ClearDataFilter !!!!!!------')
     this.tourDateSubject.next(val);
   }
 
@@ -135,9 +127,7 @@ export class ToursService {
       map((countrieDataArr) => countrieDataArr[0]),
 
       switchMap((countrieData) => {
-        console.log('countrieData ', countrieData);
         const coords = {lat: countrieData.latlng[0], lng: countrieData.latlng[1]};
-
         //newObservable
         return this.mapService.getWeather(coords).pipe(
           map((weatherResponce) => {
@@ -151,10 +141,7 @@ export class ToursService {
               rain: current.rain,
               currentWeather: hourly.temperature_2m[15]
             };
-
-            console.log('weatherData ', weatherData);
             return {countrieData, weatherData};
-          
           })
           
         )

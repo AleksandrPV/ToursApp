@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
-  imports: [ButtonModule, PasswordChangeComponent, RouterModule],
+  imports: [ButtonModule, RouterModule],
   standalone: true,
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'

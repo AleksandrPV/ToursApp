@@ -42,8 +42,8 @@ export class NearestToursComponent implements OnInit, OnChanges, AfterViewInit, 
   constructor() {}
 
   ngOnInit() {
-    // console.log('searchInput', this.searchInput)
-    // console.log('tourNearest = ', this.tourNearest)
+    console.log('searchInput', this.searchInput)
+    console.log('tourNearest = ', this.tourNearest)
   }
 
   ngOnDestroy(): void {

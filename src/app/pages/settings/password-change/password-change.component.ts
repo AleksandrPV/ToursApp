@@ -30,11 +30,9 @@ export class PasswordChangeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log("OnInit -> PasswordChangeComponent")
   }
 
   ngOnDestroy(): void {
-    console.log("OnDestroy -> PasswordChangeComponent")
   }
 
   onNewPassword(ev: Event): void {

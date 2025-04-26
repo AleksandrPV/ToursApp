@@ -18,7 +18,7 @@ import { NgTemplateOutlet } from '@angular/common';
             InputTextModule,
             DatePickerModule,
             ButtonModule,
-            NgTemplateOutlet
+
    ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
