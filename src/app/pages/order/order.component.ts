@@ -8,6 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DatePickerModule } from 'primeng/datepicker';
 import { ButtonModule } from 'primeng/button';
 import { UserService } from '../../services/user.service';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-order',
@@ -16,7 +17,8 @@ import { UserService } from '../../services/user.service';
             InputNumberModule,
             InputTextModule,
             DatePickerModule,
-            ButtonModule
+            ButtonModule,
+            NgTemplateOutlet
    ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'

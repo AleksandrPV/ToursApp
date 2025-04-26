@@ -40,6 +40,7 @@ export class ToursComponent {
   toursStore: ITour[] = [];
   showModal = false;
   location: ILocation = null;
+  selectedTour: ITour = null;
 
   constructor (
     private toursService: ToursService,
@@ -120,13 +121,14 @@ export class ToursComponent {
     }
   }
 
-  getCountryDetail(ev: Event, code: string): void {
+  getCountryDetail(ev: Event, code: string, tour: ITour): void {
     ev.stopPropagation();
     this.toursService.getCountryByCode(code).subscribe((data) => {
       if (data) {
         const countrieInfo = data.countrieData;
         console.log('countrieInfo', countrieInfo)
         this.location = {lat: countrieInfo.latlng[0], lng: countrieInfo.latlng[1]};
+        this.selectedTour = tour;
         this.showModal = true;
       }
     })  

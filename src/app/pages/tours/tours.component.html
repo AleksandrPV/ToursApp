@@ -38,7 +38,7 @@ class="tours-list cards grid flex-wrap border-round grid-nogutter justify-conten
                 
                 <p>{{item.description | slice:0:110}}...</p>
 
-                <p (click)="getCountryDetail($event, item.country?.iso_code2)">
+                <p (click)="getCountryDetail($event, item.country?.iso_code2, item.tour)">
                     Страна: {{item.country?.name_ru}}
                     <img [src]="item.country?.flag_url" alt="">
                 </p>
@@ -64,7 +64,9 @@ class="tours-list cards grid flex-wrap border-round grid-nogutter justify-conten
 <p-dialog [(visible)]="showModal" [modal]="true" [style]="{ width: '50rem' }">
 
     @if (showModal) {
-        <app-map [location]="location" />
+        <app-map [location]="location">
+            <p>Тур {{selectedTour.name}}</p>
+        </app-map>  
     }
 
     <ng-template #footer>
