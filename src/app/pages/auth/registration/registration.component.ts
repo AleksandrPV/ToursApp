@@ -5,8 +5,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserService } from '../../../services/user.service';
-import { IUserRegister } from '../../../models/IUser';
+import { IUserRegister, userObj } from '../../../models/IUser';
 import { MessageService } from 'primeng/api';
+import { HttpClient, httpResource } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -21,7 +22,7 @@ import { MessageService } from 'primeng/api';
   styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
-
+  
   login: string = null;
   password: string;
   repeatPassword: string;
@@ -30,11 +31,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   isRemember: boolean;
   labelText: string = 'Сохранить пользователя в хранилище';
 
+  
   constructor(
     private userService: UserService,
     private messageService: MessageService
   ) {
-
+    
   }
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   onAuth(ev: Event): void {
     console.log(ev);
+    // this.http.post('http://localhost:3000/users/', userObj).subscribe((data))
     // this.userService.addUser({login: this.login, password: this.password})
     const postObj = {login: this.login, password: this.password, email: this.email} as IUserRegister
     this.userService.registerUser(postObj).subscribe(

@@ -9,4 +9,9 @@ export interface IUserRegister {
     email: string;
 }
 
+export interface userObj {
+    name: string,
+    age: number
+  }
+
 export const UserStorageKey = 'current_user';

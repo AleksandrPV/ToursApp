@@ -7,6 +7,7 @@ import { Subscription, filter, map, take, tap } from 'rxjs';
 import { LoaderComponent } from '../shared/components/loader/loader.component';
 import { AsyncPipe } from '@angular/common';
 import { LoaderService } from '../services/loader.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -20,14 +21,10 @@ export class LayoutComponent implements OnInit {
   showAside = false;
 
   loader$ = inject(LoaderService).loader$;
-
   constructor(private router: Router, private activateRoute: ActivatedRoute) {}
   
-  
   ngOnInit(): void {
-
     this.showAside = this.recursFindChildData(this.activateRoute.snapshot, 'showAside');
-
     const subscription = this.router.events.pipe(
       filter((routes) => routes instanceof ActivationEnd),
       map((data) => data.snapshot )
